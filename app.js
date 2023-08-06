@@ -7,6 +7,8 @@ const app = express();
 //Middlwares
 app.use(morgan('dev'));
 app.use(express.json());
+//the following middleware gives us access to public directory 
+app.use(express.static(`${__dirname}/public`))
 
 //custom made middleware
 app.use((req, res, next) => {
