@@ -1,14 +1,17 @@
 const express = require('express');
 const morgan = require('morgan');
-const tourRouter = require('./routes/tourRoutes')
-const userRouter = require('./routes/userRoutes')
+const tourRouter = require('./routes/tourRoutes');
+const userRouter = require('./routes/userRoutes');
 const app = express();
 
 //Middlwares
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+
 app.use(express.json());
-//the following middleware gives us access to public directory 
-app.use(express.static(`${__dirname}/public`))
+//the following middleware gives us access to public directory
+app.use(express.static(`${__dirname}/public`));
 
 //custom made middleware
 app.use((req, res, next) => {
@@ -20,6 +23,6 @@ app.use((req, res, next) => {
   next();
 });
 //Mounting Middleware
-app.use('/api/v1/tours', tourRouter)
-app.use('/api/v1/users', userRouter)
+app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/users', userRouter);
 module.exports = app;
