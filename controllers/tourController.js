@@ -5,7 +5,7 @@ const tours = JSON.parse(
     fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
   );
 
-exports.chechId = (req, res,  next)=>{
+exports.checkID = (req, res,  next)=>{
   if (req.params.id * 1 > tours.length) {
     return res.status(404).json({
       status: 'fail',
@@ -30,6 +30,7 @@ exports.getAllTours =(req, res) => {
 
 exports.getTour =(req, res) => {
     //create an array with the specified id in the parameter
+    const id = req.params.id * 1;
     const tour = tours.find((el) => el.id === id);
     res.json({
       status: 'success',
@@ -72,7 +73,6 @@ exports.updateTour =(req, res) => {
 
 
 exports.deleteTour = (req, res) => {
-    
     res.status(204).json({
       status: 'success',
       data: null,
