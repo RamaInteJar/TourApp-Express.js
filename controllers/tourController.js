@@ -5,7 +5,7 @@ const tours = JSON.parse(
     fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
   );
   
-const getAllTours =(req, res) => {
+exports.getAllTours =(req, res) => {
     console.log(req.requestTime);
     res.json({
       status: 'success',
@@ -17,7 +17,7 @@ const getAllTours =(req, res) => {
     });
   };
 
-const getTour =(req, res) => {
+exports.getTour =(req, res) => {
     //JS trick way of converting a number string to a number
     const id = req.params.id * 1;
     if (id > tours.length) {
@@ -37,7 +37,7 @@ const getTour =(req, res) => {
   };
 
 
-const createTour = (req, res) => {
+exports.createTour = (req, res) => {
     // console.log(req.body);
     //creating an id for the new data
     const newId = tours[tours.length - 1].id + 1;
@@ -58,7 +58,7 @@ const createTour = (req, res) => {
   };
 
 
-const updateTour =(req, res) => {
+exports.updateTour =(req, res) => {
     if (req.params.id * 1 > tours.length) {
       return res.status(404).json({
         status: 'fail',
@@ -75,7 +75,7 @@ const updateTour =(req, res) => {
   };
 
 
-const deleteTour = (req, res) => {
+exports.deleteTour = (req, res) => {
     if (req.params.id * 1 > tours.length) {
       return res.status(404).json({
         status: 'fail',

@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 });
 //Mounting Middleware
 app.use('/api/v1/tours', tourRouter)
-app.use('/api/v1/tours', userRouter)
+app.use('/api/v1/users', userRouter)
 
 const PORT = 3000;
 app.listen(PORT, () => {
