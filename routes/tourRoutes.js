@@ -5,6 +5,10 @@ const tourController = require('./../controllers/tourController')
 
 //Mounting the tour routers
 const router = express.Router();
+router.param('id', (req, res, next, val)=>{
+  console.log(`Tour id is: ${val}`);
+  next()
+})
 router
 .route('/')
 .get(tourController.getAllTours)
